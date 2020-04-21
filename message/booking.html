@@ -14,10 +14,8 @@
   <body>
 	<div class="form-group text-center">
 		<form action="https://script.google.com/a/macros/gapp.nthu.edu.tw/s/AKfycbxkGXE8HSD5oU3NnT9_288wtohV-F5ZhKU_Tfk64lRRjM-L-RM/exec" method="get">
-		<label>留言</label>
-		<textarea class="form-control" id="text" rows="3" name="text"></textarea>
-		<div id="reserve"></div>
-		<button type="submit" class="btn btn-primary btn-block">送出</button>
+		<div id="reserve"><h1 id="message">載入選項中...</h1></div>
+		<!--<button type="submit" class="btn btn-primary btn-block">送出</button>-->
 		</form>
 	</div>
 	<div>
@@ -87,16 +85,22 @@
 		   console.log(data[i]);
 		}
 		*/
-		
+		/*
+		$("#message").remove();
 		for (i = 1; i < data.length; i++)
 		{
-			$("<input type='radio' value='"+data[i]+"' />")
-			.attr("name", "select")
+			$("<input type='radio' name='select' value='"+data[i]+"' />")
 			.appendTo("#reserve");
 			$("<label>"+data[i]+"</label><br/>")
 			.appendTo("#reserve");
 		}
 		console.log('ok');
+		*/
+		for (i = 1; i < data.length; i++)
+		{
+			$('<input type="submit" name="action" value="'+data[i]+'" /><br/>')
+			.appendTo("#reserve");
+		}
 	});
 
 </script>
