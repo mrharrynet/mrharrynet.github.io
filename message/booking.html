@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>預約</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+	<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  </head>
+  <body>
+	<div class="form-group text-center">
+		<form action="https://script.google.com/a/macros/gapp.nthu.edu.tw/s/AKfycbxkGXE8HSD5oU3NnT9_288wtohV-F5ZhKU_Tfk64lRRjM-L-RM/exec" method="get">
+		<label>留言</label>
+		<textarea class="form-control" id="text" rows="3" name="text"></textarea>
+		<button type="submit" class="btn btn-primary btn-block">送出</button>
+		</form>
+	</div>
+	<div>
+		<div id="result"></div>
+	</div>
+  </body>
+</html>
+	<script>
+	function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+            //initializeApp();
+			getProfile();
+        })
+        .catch((err) => {
+            alert('啟動失敗。');
+        });
+	}
+
+	function initializeApp() {
+		$('#text').val('hello');
+	}
+	
+	function getProfile() {
+	liff.getProfile()
+		.then(profile => {
+		  const name = profile.displayName
+		  //var h = document.getElementById('result');
+		  //h.innerHTML = name;
+		  $('#text').val(name);
+		})
+		.catch((err) => {
+		  console.log('error', err);
+		});
+	}
+	
+	
+	initializeLiff('1654038209-Ga4wv483');
+</script>
