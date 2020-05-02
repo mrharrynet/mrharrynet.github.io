@@ -36,7 +36,7 @@
   </body>
 </html>
 	<script>
-	function initializeLiff(myLiffId) {
+	function initLiff(myLiffId) {
     liff
         .init({
             liffId: myLiffId
@@ -67,12 +67,12 @@
 		});
 	}
 	
-	function send(datetime) {
+	function submit(datetime) {
 		$('#form-reserve input[type=hidden][name=datetime]').val(datetime);
 		$('#form-reserve').submit();
 	}
 	
-	initializeLiff('1654038209-Ga4wv483');
+	initLiff('1654038209-Ga4wv483');
 	
 	fetch('https://script.google.com/macros/s/AKfycbwHrLnXWoLMeYRmDTRE7yxjBuZ8HMPuO-irtev8vBbNNgbpDFLM/exec', {method:'GET'})
 	.then(res => {
@@ -81,7 +81,7 @@
 		$('#options').empty()
 		for (i = 1; i < data.length; i++)
 		{
-			$('#options').append($('<div class="row justify-content-md-center p-1"><a class="btn btn-outline-primary btn-options" href="javascript:send(\'' + data[i] + '\');">' + data[i] + '</a></div>'));
+			$('#options').append($('<div class="row justify-content-md-center p-1"><a class="btn btn-outline-primary btn-options" href="javascript:submit(\'' + data[i] + '\');">' + data[i] + '</a></div>'));
 		}
 	}).catch((err) => {
 		  console.log('error', err);
