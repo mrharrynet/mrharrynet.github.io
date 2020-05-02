@@ -4,17 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>預約</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/bootstrap-datepicker.css" >
-	
 	<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="locales/bootstrap-datepicker.zh-TW.min.js"></script>
+	
   </head>
   <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">預約按摩時段</a>
+	</nav>
+  
 	<div class="form-group text-center">
 		<form action="https://script.google.com/a/macros/gapp.nthu.edu.tw/s/AKfycbxkGXE8HSD5oU3NnT9_288wtohV-F5ZhKU_Tfk64lRRjM-L-RM/exec" method="get">
-		<div id="reserve"><h1 id="message">載入選項中...</h1></div>
+		<div class="container" id="options">
+			<div class="row justify-content-md-center p-2">
+				<p class="h3 text-primary p-1">載入選項中...</p>
+				<div class="spinner-border text-primary" role="status"></div>
+			</div>
 		<!--<button type="submit" class="btn btn-primary btn-block">送出</button>-->
 		</form>
 	</div>
@@ -61,46 +67,19 @@
 		});
 	}
 	
-	
 	initializeLiff('1654038209-Ga4wv483');
-	
-	/*
-	$('#date').datepicker({
-		startDate: "04/01/2020",
-		endDate: "05/20/2020",
-		datesdisabled: ['04/01/2020', '04/02/2020'],
-		locale:"zh-tw"
-	});
-	*/
 	
 	fetch('https://script.google.com/macros/s/AKfycbwHrLnXWoLMeYRmDTRE7yxjBuZ8HMPuO-irtev8vBbNNgbpDFLM/exec', {method:'GET'})
 	.then(res => {
 		return res.json();
 	}).then(data => {
-		//console.log(result);
-		
-		/*
+		$('#options').empty()
 		for (i = 1; i < data.length; i++)
 		{
-		   console.log(data[i]);
+			$('#options').append($('<div class="row justify-content-md-center p-1"><a class="btn btn-outline-primary" href="#">' + data[i] + '</a></div>'));
 		}
-		*/
-		/*
-		$("#message").remove();
-		for (i = 1; i < data.length; i++)
-		{
-			$("<input type='radio' name='select' value='"+data[i]+"' />")
-			.appendTo("#reserve");
-			$("<label>"+data[i]+"</label><br/>")
-			.appendTo("#reserve");
-		}
-		console.log('ok');
-		*/
-		for (i = 1; i < data.length; i++)
-		{
-			$('<input type="submit" name="action" value="'+data[i]+'" /><br/>')
-			.appendTo("#reserve");
-		}
+	}).catch((err) => {
+		  console.log('error', err);
 	});
-
 </script>
+
