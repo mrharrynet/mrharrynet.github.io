@@ -15,14 +15,13 @@
 	</nav>
   
 	<div class="form-group text-center">
-		<form action="https://script.google.com/a/macros/gapp.nthu.edu.tw/s/AKfycbxkGXE8HSD5oU3NnT9_288wtohV-F5ZhKU_Tfk64lRRjM-L-RM/exec" method="get">
-		<div id="profile"></div>
+		<form id="form-reserve" action="https://script.google.com/macros/s/AKfycbwHrLnXWoLMeYRmDTRE7yxjBuZ8HMPuO-irtev8vBbNNgbpDFLM/exec" method="post">
+		<div id="data"><input type="hidden" name="name" value="harry"></div>
 		<div class="container" id="options">
 			<div class="row justify-content-md-center p-2">
 				<p class="h3 text-primary p-1">載入選項中...</p>
 				<div class="spinner-border text-primary" role="status"></div>
 			</div>
-		<!--<button type="submit" class="btn btn-primary btn-block">送出</button>-->
 		</form>
 	</div>
 	<div>
@@ -55,11 +54,16 @@
 	liff.getProfile()
 		.then(profile => {
 		  const name = profile.displayName
-		  $('#profile').append($('<input type="hidden" name="name" value="' + name + '">'));
+		  $('#data').append($('<input type="hidden" name="name" value="' + name + '">'));
 		})
 		.catch((err) => {
 		  console.log('error', err);
 		});
+	}
+	
+	function send(datetime) {
+		$('#data').append($('<input type="hidden" name="datetime" value="' + datetime + '">'));
+		$('#form-reserve').submit();
 	}
 	
 	initializeLiff('1654038209-Ga4wv483');
@@ -71,7 +75,7 @@
 		$('#options').empty()
 		for (i = 1; i < data.length; i++)
 		{
-			$('#options').append($('<div class="row justify-content-md-center p-1"><a class="btn btn-outline-primary" href="#">' + data[i] + '</a></div>'));
+			$('#options').append($('<div class="row justify-content-md-center p-1"><a class="btn btn-outline-primary btn-options" href="javascript:send(\'' + data[i] + '\');">' + data[i] + '</a></div>'));
 		}
 	}).catch((err) => {
 		  console.log('error', err);
