@@ -16,7 +16,11 @@
   
 	<div class="form-group text-center">
 		<form id="form-reserve" action="https://script.google.com/macros/s/AKfycbwHrLnXWoLMeYRmDTRE7yxjBuZ8HMPuO-irtev8vBbNNgbpDFLM/exec" method="post">
-		<div id="data"></div>
+		<div>
+			<input type="hidden" name="id" value="11111">
+			<input type="hidden" name="name" value="harry">
+			<input type="hidden" name="datetime" value="">
+		</div>
 		<div class="container" id="options">
 			<div class="row justify-content-md-center p-2">
 				<p class="h3 text-primary p-1">載入選項中...</p>
@@ -53,8 +57,10 @@
 	function getProfile() {
 	liff.getProfile()
 		.then(profile => {
-		  const name = profile.displayName
-		  $('#data').append($('<input type="hidden" name="name" value="' + name + '">'));
+			id = profile.userId
+			name = profile.displayName
+			$('#form-reserve input[type=hidden][name=id]').val(id);
+			$('#form-reserve input[type=hidden][name=name]').val(name);
 		})
 		.catch((err) => {
 		  console.log('error', err);
@@ -62,7 +68,7 @@
 	}
 	
 	function send(datetime) {
-		$('#data').append($('<input type="hidden" name="datetime" value="' + datetime + '">'));
+		$('#form-reserve input[type=hidden][name=datetime]').val(datetime);
 		$('#form-reserve').submit();
 	}
 	
