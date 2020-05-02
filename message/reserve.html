@@ -16,6 +16,7 @@
   
 	<div class="form-group text-center">
 		<form action="https://script.google.com/a/macros/gapp.nthu.edu.tw/s/AKfycbxkGXE8HSD5oU3NnT9_288wtohV-F5ZhKU_Tfk64lRRjM-L-RM/exec" method="get">
+		<div id="profile"></div>
 		<div class="container" id="options">
 			<div class="row justify-content-md-center p-2">
 				<p class="h3 text-primary p-1">載入選項中...</p>
@@ -54,13 +55,7 @@
 	liff.getProfile()
 		.then(profile => {
 		  const name = profile.displayName
-		  //var h = document.getElementById('result');
-		  //h.innerHTML = name;
-		  
-		  $('<input type="hidden" name="name" value="' + name + '">')
-			.appendTo("#reserve");
-			
-		  //$('#text').val(name);
+		  $('#profile').append($('<input type="hidden" name="name" value="' + name + '">'));
 		})
 		.catch((err) => {
 		  console.log('error', err);
