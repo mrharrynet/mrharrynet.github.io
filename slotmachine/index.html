@@ -6,20 +6,25 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="./js/jquery.slotmachine.css" type="text/css" media="screen" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	
+	
+    <script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="./js/slotmachine.js"></script>
 
 
   </head>
 
   <body>
+    <div class="header-line"></div>
+
     <!-- Slot machine example -->
     <div id="casino" style="padding-top:50px;">
       <div class="content">
-        <h1>點一下！</h1>
+        <h1>搖出你的武器</h1>
 
         <div>
           <div id="casino1" class="slotMachine" style="margin-left: -65px;">
@@ -50,8 +55,8 @@
           </div>
 
           <div class="btn-group btn-group-justified" role="group">
-            <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Shuffle!</button>
-            <button id="casinoStop" type="button" class="btn btn-primary btn-lg">Stop!</button>
+            <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">開始</button>
+            <button id="casinoStop" type="button" class="btn btn-primary btn-lg">停止</button>
           </div>
         </div>
       </div>
@@ -86,20 +91,35 @@ btnShuffle.addEventListener('click', () => {
 });
 
 btnStop.addEventListener('click', () => {
-  switch(count) {
-    case 3:
-      mCasino1.stop();
-      break;
-    case 2:
-      mCasino2.stop();
-      break;
-    case 1:
-      mCasino3.stop();
-      break;
-  }
-  count--;
+	mCasino1.stop();
+	mCasino2.stop();
+	mCasino3.stop();
+	setTimeout(function(){ $('#exampleModal').modal('show'); }, 1200);
 });
+
     </script>
+
+	<!-- Button trigger modal -->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">獲得武器</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<img src="./img/sword.png" width="100px">
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-primary">分享</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
 
   </body>
 </html>
