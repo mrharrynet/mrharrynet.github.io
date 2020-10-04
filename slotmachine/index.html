@@ -37,7 +37,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm form-group d-flex justify-content-center">
-				<button id="" type="button" class="btn btn-primary btn-lg">點我看如何正確測量</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal">點我看如何正確測量</button>
 				<button id="startButton" type="button" class="btn btn-primary btn-lg"  >開始計算</button>
 			</div>
 		</div>
@@ -49,7 +49,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div id="casino" class="d-none"> -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div id="casino" class="d-none">
       <div class="content">
         <div>
@@ -86,69 +90,92 @@
     <script>
 		$('#startButton').click(function(){
 			$('#casino').removeClass('d-none');
-		
-			const btnShuffle = document.querySelector('#casinoShuffle');
-			const btnStop = document.querySelector('#casinoStop');
 			const casino1 = document.querySelector('#casino1');
 			const casino2 = document.querySelector('#casino2');
 			const casino3 = document.querySelector('#casino3');
 			const mCasino1 = new SlotMachine(casino1, {
-			  active: 0,
-			  delay: 500
+				active: 0,
+				delay: 500
 			});
 			const mCasino2 = new SlotMachine(casino2, {
-			  active: 1,
-			  delay: 500
+				active: 1,
+				delay: 500
 			});
 			const mCasino3 = new SlotMachine(casino3, {
-			  active: 2,
-			  delay: 500
+				active: 2,
+				delay: 500
 			});
 
+			// go to div #casino
 			window.location.href = '#casino';
 			
 			// start machine
 			mCasino1.shuffle(9999);
 			mCasino2.shuffle(9999);
 			mCasino3.shuffle(9999);
-			setTimeout(stopMachine, 2000);
-
-			function stopMachine() {
+			setTimeout(function(){
+				// stop machine
 				mCasino1.stop();
 				mCasino2.stop();
 				mCasino3.stop();
-				setTimeout(function(){ $('#exampleModal').modal('show'); }, 1200);
-			}
+				setTimeout(function(){ $('#resultModal').modal('show'); }, 1500);
+			}, 2000);
 		});
-		
-		
+				
+		function copyText(){
+			var text = document.getElementById("sharedUrl");
+			text.select();
+			text.setSelectionRange(0, 99999); //For mobile devices
+			document.execCommand("copy");
+			alert("複製：" + text.value);
+		}
     </script>
 
-	<!-- Button trigger modal -->
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">你的結果</h5>
+					<h5 class="modal-title">如何正確測量？</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<span>粗度PR值：</span>
-					<span>長度PR值：</span>
-					<span>代表物：</span>
-					<img src="./img/sword.png" width="100px">
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">分享</button><br>
-					<button type="button" class="btn btn-primary">分享</button>
+					<img src="./img/noun_Bird_1711226.png" width="500px">
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">你的結果</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span>粗度PR值：87</span><br>
+					<span>長度PR值：87</span><br>
+					<span>代表物：</span>
+					<img src="./img/sword.png" width="500px">
+				</div>
+				<div class="modal-footer">
+					<div class="form-inline mr-auto">
+						<button type="button" class="btn btn-primary" onclick="location.href='https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=http%3A%2F%2Ftest.harry.fun%2Fslotmachine%2Ftest10.html&display=popup&ref=plugin&src=share_button'">ＦＢ分享</button>　
+						<button onclick="copyText()" type="button" class="btn btn-primary">複製網址分享</button>　
+						<input type="text" class="form-control" id="sharedUrl" name="" value="http://test.harry.fun/slotmachine/test10.html">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v8.0&appId=1936362173067187&autoLogAppEvents=1" nonce="tsYUcCy8"></script>
+	<div class="fb-share-button" data-href="http://test.harry.fun/slotmachine/test10.html" data-layout="button_count" data-size="large"></div>
   </body>
 </html>
