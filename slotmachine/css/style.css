@@ -1,26 +1,6 @@
  @charset "utf-8";
 /* CSS Document */
 
-h1 {
-  text-align: center;
-  padding-bottom: 25px;
-}
-
-.container {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-a{
-  color: #ccd500;
-  text-decoration: none;
-}
-
-a:hover{
-  text-decoration: underline;
-  color: #a9b119;
-}
-
 .slotMachine .slot{
   height:100px;
   background-position-x: 55%;
@@ -51,68 +31,13 @@ a:hover{
   background-image: url("../img/slot6.png");
 }
 
-/*
- * SlotMachine
- */
-#randomize {
-  border-bottom: 10px solid rgb(72, 158, 48);
-  background-color: #EB6B56;
-  border-top: 20px dashed #B8312F;
-}
-
-#randomize .row > div.col-sm-4 > div {
-  padding: 40px;
-  width: 180px;
-  height: 180px;
-  background: white;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-align: center;
-}
-
-#randomize .row > div.col-xs-4 > div {
-  padding-top: 40px;
-  padding-left: 40px;
-  width: 175px;
-  height: 175px;
-  background-color: #fff;
-  border-radius: 50%;
-  margin: auto;
-}
-
-.randomizeMachine {
-  width: 100px;
-  height: 100px;
-}
-
-#randomize .btn-group {
-  margin-top: 30px;
-  width: auto;
-  margin-bottom: 15px;
-}
-
-.machineResult {
-  color: #fff;
-  text-align: center;
-  font-weight: 900;
-  height: 50px !important;
-  background: transparent !important;
-  font-size: 18px;
-  padding: 10px !important;
-}
-
-/*
- * Casino
- */
 #casino {  
   #background-color: rgb(240, 150, 150);
 }
 
 #casino .content:nth-child(1) {
   text-align: center;
-  background: url('../img/machine.png') no-repeat 50% 80px;
+  background: url('../img/machine.png') no-repeat 50% 0px;
   background-position-x: calc(50% + 30px);
   min-height: 580px;
 }
@@ -132,13 +57,13 @@ a:hover{
 .slotMachine{
   width: 36.333333%;
   #border: 5px solid #CF5178;
-  border: 5px solid #154aa0;
+  border: 2px solid #154aa0;
   height: 100px;
   display: inline-block;
 }
 
 #casino .btn-group {
-  margin-top: 150px;
+  margin-top: 250px;
   transform: translateX(-25px);
 }
 

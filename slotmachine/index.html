@@ -1,31 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>jQuery Slot Machine</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>jQuery Slot Machine</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2.0">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="./js/jquery.slotmachine.css" type="text/css" media="screen" />
-	
-	
-    <script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="./js/slotmachine.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="./js/jquery.slotmachine.css" type="text/css" media="screen" />
 
 
-  </head>
+		<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="./js/slotmachine.js"></script>
 
-  <body>
-    <div class="header-line"></div>
-
-    <!-- Slot machine example -->
-    <div id="casino" style="padding-top:50px;">
+	</head>
+	<body>
+	<div id="container">
+		<div class="row">
+			<div class="col-sm">
+				<h1>標題</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm form-group">
+				<label class="col-form-label">長度</label>
+				<input type="text" class="form-control" id="" name="" value="" placeholder="cm">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm form-group">
+				<label class="col-form-label">粗度（圓周）</label>
+				<input type="text" class="form-control" id="" name="" value="" placeholder="cm">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm form-group d-flex justify-content-center">
+				<button id="" type="button" class="btn btn-primary btn-lg">點我看如何正確測量</button>
+				<button id="startButton" type="button" class="btn btn-primary btn-lg"  >開始計算</button>
+			</div>
+		</div>
+		<div>
+			<div class="col-sm form-group">
+				<p>
+					聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字 聲明文字
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="casino" class="d-none"> -->
+	<div id="casino" class="d-none">
       <div class="content">
-        <h1>搖出你的武器</h1>
-
         <div>
           <div id="casino1" class="slotMachine" style="margin-left: -65px;">
             <div class="slot slot1"></div>
@@ -53,71 +79,74 @@
             <div class="slot slot5"></div>
             <div class="slot slot6"></div>
           </div>
-
-          <div class="btn-group btn-group-justified" role="group">
-            <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">開始</button>
-            <button id="casinoStop" type="button" class="btn btn-primary btn-lg">停止</button>
-          </div>
         </div>
       </div>
 
     </div>
-    <script id="codeScript5">
-let count = 0;
-const btnShuffle = document.querySelector('#casinoShuffle');
-const btnStop = document.querySelector('#casinoStop');
-const casino1 = document.querySelector('#casino1');
-const casino2 = document.querySelector('#casino2');
-const casino3 = document.querySelector('#casino3');
-const mCasino1 = new SlotMachine(casino1, {
-  active: 0,
-  delay: 500
-});
-const mCasino2 = new SlotMachine(casino2, {
-  active: 1,
-  delay: 500
-});
-const mCasino3 = new SlotMachine(casino3, {
-  active: 2,
-  delay: 500
-});
-    </script>
-    <script id="codeScript6">
-btnShuffle.addEventListener('click', () => {
-  count = 3;
-  mCasino1.shuffle(9999);
-  mCasino2.shuffle(9999);
-  mCasino3.shuffle(9999);
-});
+    <script>
+		$('#startButton').click(function(){
+			$('#casino').removeClass('d-none');
+		
+			const btnShuffle = document.querySelector('#casinoShuffle');
+			const btnStop = document.querySelector('#casinoStop');
+			const casino1 = document.querySelector('#casino1');
+			const casino2 = document.querySelector('#casino2');
+			const casino3 = document.querySelector('#casino3');
+			const mCasino1 = new SlotMachine(casino1, {
+			  active: 0,
+			  delay: 500
+			});
+			const mCasino2 = new SlotMachine(casino2, {
+			  active: 1,
+			  delay: 500
+			});
+			const mCasino3 = new SlotMachine(casino3, {
+			  active: 2,
+			  delay: 500
+			});
 
-btnStop.addEventListener('click', () => {
-	mCasino1.stop();
-	mCasino2.stop();
-	mCasino3.stop();
-	setTimeout(function(){ $('#exampleModal').modal('show'); }, 1200);
-});
+			window.location.href = '#casino';
+			
+			// start machine
+			mCasino1.shuffle(9999);
+			mCasino2.shuffle(9999);
+			mCasino3.shuffle(9999);
+			setTimeout(stopMachine, 2000);
 
+			function stopMachine() {
+				mCasino1.stop();
+				mCasino2.stop();
+				mCasino3.stop();
+				setTimeout(function(){ $('#exampleModal').modal('show'); }, 1200);
+			}
+		});
+		
+		
     </script>
 
 	<!-- Button trigger modal -->
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">獲得武器</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </div>
-		  <div class="modal-body">
-			<img src="./img/sword.png" width="100px">
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-primary">分享</button>
-		  </div>
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">你的結果</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span>粗度PR值：</span>
+					<span>長度PR值：</span>
+					<span>代表物：</span>
+					<img src="./img/sword.png" width="100px">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">分享</button><br>
+					<button type="button" class="btn btn-primary">分享</button>
+				</div>
+			</div>
 		</div>
-	  </div>
 	</div>
 
 
