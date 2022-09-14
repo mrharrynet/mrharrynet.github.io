@@ -31,21 +31,31 @@
     </body>
     <script>
         var html = '';
-        // 雷達迴波
-        var sub = moment().minute() + 10;
-        var datetime = moment().subtract(sub, 'minutes').format('YYYYMMDDhhmm');
+
+		// 雷達迴波
+        var sub = moment().minute() % 10 + 10;
+        var datetime = moment().subtract(sub, 'minutes').format('YYYYMMDDHHmm');
         var url = `https://www.cwb.gov.tw/Data/radar/CV1_TW_3600_${datetime}.png`;
         html += `<img src="${url}" width="880px" /><br/>`;
+		
+        // 定量降水預報
+        var url = 'https://www.cwb.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_12.png?v=1112';
+        html += `<img src="${url}" width="880px" /><br/>`;
+
+		var url = 'https://www.cwb.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_24.png?v=1112';
+		html += `<img src="${url}" width="880px" /><br/>`;
 
         // 今日累積雨量
-        var sub = moment().minute() + 30;
-        var datetime = moment().subtract(sub, 'minutes').format('YYYY-MM-DD_hhmm');
+        var sub = moment().minute() % 30;
+		if (sub < 15) {
+			sub += 30;
+		}
+        var datetime = moment().subtract(sub, 'minutes').format('YYYY-MM-DD_HHmm');
         var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}.QZJ8.jpg`;
         html += `<img src="${url}" /><br/>`;
 
         // 前 5 日累積雨量
         for(let i = 0; i < 5 ; i++) {
-            console.log(i);
             var datetime = moment().subtract(i, 'days').format('YYYY-MM-DD');
             var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}_0000.QZJ8.jpg`;
             html += `<img src="${url}" /><br/>`;
