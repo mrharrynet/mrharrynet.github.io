@@ -4,49 +4,50 @@
         <meta charset="utf-8">
         <title>累積雨量</title>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </head>
     <body>
-        <a href="https://www.cwb.gov.tw/V8/C/P/Rainfall/Rainfall_QZJ.html" target="_blank">日累積圖</a>
-		<a href="https://www.cwb.gov.tw/V8/C/P/QPF.html" target="_blank">定量降水預報</a>
-		<a href="https://www.cwb.gov.tw/V8/C/W/OBS_Radar.html" target="_blank">雷達回波</a>
-		<a href="https://www.cwb.gov.tw/V8/C/W/week.html" target="_blank">1週預報</a>
-		<a href="https://www.cwb.gov.tw/V8/C/W/Town/Town.html" target="_blank">鄉鎮預報</a>
-		<div id="main">
-        </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/P/Rainfall/Rainfall_QZJ.html" target="_blank">日累積圖</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/P/QPF.html" target="_blank">定量降水預報</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/OBS_Radar.html" target="_blank">雷達回波</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/week.html" target="_blank">1週預報</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/Town/Town.html" target="_blank">鄉鎮預報</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main class="container">
+            <div class="bg-light p-5 rounded">
+                <div id="main">
+                </div>
+            </div>
+        </main>
     </body>
     <script>
-        function getFormattedDate(date) {
-            var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            return year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-        }
-
-        function getFormattedTime(date) {
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            if (minutes > 30) {
-                minutes = 30;
-            } else {
-                minutes = 0;
-            }
-            return String(hours).padStart(2, '0') + String(minutes).padStart(2, '0');
-        }
-
         var html = '';
+        // 雷達迴波
+        var sub = moment().minute() + 10;
+        var datetime = moment().subtract(sub, 'minutes').format('YYYYMMDDhhmm');
+        var url = `https://www.cwb.gov.tw/Data/radar/CV1_TW_3600_${datetime}.png`;
+        html += `<img src="${url}" width="880px" /><br/>`;
 
-        // 今日
-        var date = new Date();
-        date.setMinutes(date.getMinutes() - 30);
-        getFormattedTime(date);
-        var url = `https://www.cwb.gov.tw/Data/rainfall/${getFormattedDate(date)}_${getFormattedTime(date)}.QZJ8.jpg`;
+        // 今日累積雨量
+        var sub = moment().minute() + 30;
+        var datetime = moment().subtract(sub, 'minutes').format('YYYY-MM-DD_hhmm');
+        var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}.QZJ8.jpg`;
         html += `<img src="${url}" /><br/>`;
 
-        // 前 5 日
+        // 前 5 日累積雨量
         for(let i = 0; i < 5 ; i++) {
-            var date = new Date();
-            date.setDate(date.getDate() - i);
-            var url = `https://www.cwb.gov.tw/Data/rainfall/${getFormattedDate(date)}_0000.QZJ8.jpg`;
+            console.log(i);
+            var datetime = moment().subtract(i, 'days').format('YYYY-MM-DD');
+            var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}_0000.QZJ8.jpg`;
             html += `<img src="${url}" /><br/>`;
         }
         $('#main').html(html);
