@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>累積雨量</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="main">
+        </div>
+    </body>
+    <script>
+        function getFormattedDate(date) {
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            return year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+        }
+
+        function getFormattedTime(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            if (minutes > 30) {
+                minutes = 30;
+            } else {
+                minutes = 0;
+            }
+            return String(hours).padStart(2, '0') + String(minutes).padStart(2, '0');
+        }
+
+        var html = '';
+
+        // 今日
+        var date = new Date();
+        date.setMinutes(date.getMinutes() - 30);
+        getFormattedTime(date);
+        var url = `https://www.cwb.gov.tw/Data/rainfall/${getFormattedDate(date)}_${getFormattedTime(date)}.QZJ8.jpg`;
+        html += `<img src="${url}" /><br/>`;
+
+        // 前 5 日
+        for(let i = 0; i < 5 ; i++) {
+            var date = new Date();
+            date.setDate(date.getDate() - i);
+            var url = `https://www.cwb.gov.tw/Data/rainfall/${getFormattedDate(date)}_0000.QZJ8.jpg`;
+            html += `<img src="${url}" /><br/>`;
+        }
+        $('#main').html(html);
+  </script>
+</html>
