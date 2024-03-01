@@ -13,11 +13,11 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/P/Rainfall/Rainfall_QZJ.html" target="_blank">日累積圖</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/P/QPF.html" target="_blank">定量降水預報</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/OBS_Radar.html" target="_blank">雷達回波</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/week.html" target="_blank">1週預報</a></li>
-                        <li class="nav-item"><a class="nav-link" href="https://www.cwb.gov.tw/V8/C/W/Town/Town.html" target="_blank">鄉鎮預報</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwa.gov.tw/V8/C/P/Rainfall/Rainfall_QZJ.html" target="_blank">日累積圖</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwa.gov.tw/V8/C/P/QPF.html" target="_blank">定量降水預報</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwa.gov.tw/V8/C/W/OBS_Radar.html" target="_blank">雷達回波</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwa.gov.tw/V8/C/W/week.html" target="_blank">1週預報</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.cwa.gov.tw/V8/C/W/Town/Town.html" target="_blank">鄉鎮預報</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,14 +35,14 @@
 		// 雷達迴波
         var sub = moment().minute() % 10 + 10;
         var datetime = moment().subtract(sub, 'minutes').format('YYYYMMDDHHmm');
-        var url = `https://www.cwb.gov.tw/Data/radar/CV1_TW_3600_${datetime}.png`;
+        var url = `https://www.cwa.gov.tw/Data/radar/CV1_TW_3600_${datetime}.png`;
         html += `<img src="${url}" width="880px" /><br/>`;
 		
         // 定量降水預報
-        var url = 'https://www.cwb.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_12.png?v=1112';
+        var url = 'https://www.cwa.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_12.png?v=1112';
         html += `<img src="${url}" width="880px" /><br/>`;
 
-		var url = 'https://www.cwb.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_24.png?v=1112';
+		var url = 'https://www.cwa.gov.tw/Data/fcst_img/QPF_ChFcstPrecip_12_24.png?v=1112';
 		html += `<img src="${url}" width="880px" /><br/>`;
 
         // 今日累積雨量
@@ -51,13 +51,13 @@
 			sub += 30;
 		}
         var datetime = moment().subtract(sub, 'minutes').format('YYYY-MM-DD_HHmm');
-        var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}.QZJ8.jpg`;
+        var url = `https://www.cwa.gov.tw/Data/rainfall/${datetime}.QZJ8.jpg`;
         html += `<img src="${url}" /><br/>`;
 
         // 前 5 日累積雨量
         for(let i = 0; i < 5 ; i++) {
             var datetime = moment().subtract(i, 'days').format('YYYY-MM-DD');
-            var url = `https://www.cwb.gov.tw/Data/rainfall/${datetime}_0000.QZJ8.jpg`;
+            var url = `https://www.cwa.gov.tw/Data/rainfall/${datetime}_0000.QZJ8.jpg`;
             html += `<img src="${url}" /><br/>`;
         }
         $('#main').html(html);
